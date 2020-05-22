@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import './App.css';
 import FeaturesList from './Components/FeaturesList/FeaturesList';
-import Summary from './Components/Summary/Summary';
+import CartSummary from './Components/CartSummary/CartSummary';
+import { FEATURES } from './data'
 
 class App extends Component {
   state = {
@@ -27,7 +28,7 @@ class App extends Component {
   };
 
   updateFeature = (feature, newValue) => {
-    const selected = Object.assign({}, this.state.selected);
+    const selected = { ...this.state.selected }
     selected[feature] = newValue;
     this.setState({
       selected
@@ -46,9 +47,9 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-          <FeaturesList features={this.props.features} updateFeature={this.updateFeature} selected={this.state.selected}/>
+          <FeaturesList features={FEATURES} updateFeature={this.updateFeature} selected={this.state.selected} />
 
-          <Summary selected={this.state.selected} total={total} />
+          <CartSummary selected={this.state.selected} total={total} />
         </main>
       </div>
     );
